@@ -1,0 +1,52 @@
+[gd_scene load_steps=6 format=3 uid="uid://benatmtaibooh"]
+
+[ext_resource type="Texture2D" uid="uid://b75ulpypqc0op" path="res://card_frame.jpg" id="1_5grtr"]
+[ext_resource type="Script" path="res://card_renderer.gd" id="1_mwrpp"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_uqejx"]
+font_size = 46
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_27xya"]
+font_size = 40
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8w7va"]
+size = Vector2(461, 695)
+
+[node name="card" type="Node2D"]
+script = ExtResource("1_mwrpp")
+
+[node name="name" type="Label" parent="."]
+visibility_layer = 2
+z_index = 1
+offset_left = -127.0
+offset_top = -252.0
+offset_right = 124.0
+offset_bottom = -185.0
+text = "Card Name"
+label_settings = SubResource("LabelSettings_uqejx")
+
+[node name="cost" type="Label" parent="."]
+z_index = 1
+offset_left = -19.0
+offset_top = 189.0
+offset_right = 21.0
+offset_bottom = 247.0
+text = "1"
+label_settings = SubResource("LabelSettings_27xya")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+visibility_layer = 2
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_5grtr")
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(-0.5, 0.5)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_8w7va")
+
+[connection signal="input_event" from="Area2D" to="." method="input_event"]

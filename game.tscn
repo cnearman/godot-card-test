@@ -1,0 +1,44 @@
+[gd_scene load_steps=7 format=3 uid="uid://dq8nd7qfq30ai"]
+
+[ext_resource type="Script" path="res://local_player_hand_controller.gd" id="1_pm342"]
+[ext_resource type="PackedScene" uid="uid://bbvshl8m5tu4c" path="res://player/player_hand.tscn" id="2_xfkjx"]
+[ext_resource type="Script" path="res://player/player_hand.gd" id="3_e0m2r"]
+[ext_resource type="PackedScene" uid="uid://benatmtaibooh" path="res://card.tscn" id="4_yecjy"]
+[ext_resource type="Script" path="res://add_card.gd" id="5_ecf1h"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0lm0a"]
+size = Vector2(275, 275)
+
+[node name="game" type="Node"]
+
+[node name="controllers" type="Node" parent="."]
+
+[node name="local_player_hand_controller" type="Node" parent="controllers"]
+unique_name_in_owner = true
+script = ExtResource("1_pm342")
+
+[node name="local_player_board_controller" type="Node" parent="controllers"]
+
+[node name="player_rendering" type="Node" parent="."]
+
+[node name="player_hand" parent="player_rendering" node_paths=PackedStringArray("hand_controller") instance=ExtResource("2_xfkjx")]
+editor_description = "PlayerHand
+"
+position = Vector2(1150, 648)
+script = ExtResource("3_e0m2r")
+hand_controller = NodePath("../../controllers/local_player_hand_controller")
+card_template = ExtResource("4_yecjy")
+card_offset = 500.0
+
+[node name="add_card" type="Node2D" parent="."]
+script = ExtResource("5_ecf1h")
+
+[node name="Area2D" type="Area2D" parent="add_card"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="add_card/Area2D"]
+position = Vector2(209, 447)
+shape = SubResource("RectangleShape2D_0lm0a")
+debug_color = Color(0, 0.6, 0.701961, 0.419608)
+
+[connection signal="hand_cards_updated" from="controllers/local_player_hand_controller" to="player_rendering/player_hand" method="render_hand"]
+[connection signal="input_event" from="add_card/Area2D" to="add_card" method="input_event"]
