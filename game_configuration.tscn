@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://d35e1sx370bmn"]
+
+[ext_resource type="Script" path="res://game_configuration.gd" id="1_ce70o"]
+[ext_resource type="Texture2D" uid="uid://ddjm5bau2155j" path="res://icon.svg" id="2_gat08"]
+
+[node name="game_configuration" type="Node2D"]
+script = ExtResource("1_ce70o")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(989, 482)
+texture = ExtResource("2_gat08")
+
+[node name="Sprite2D4" type="Sprite2D" parent="."]
+position = Vector2(2554, 1439)
+texture = ExtResource("2_gat08")
+
+[node name="Sprite2D3" type="Sprite2D" parent="."]
+position = Vector2(0, 1082)
+texture = ExtResource("2_gat08")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(3497, 375)
+texture = ExtResource("2_gat08")

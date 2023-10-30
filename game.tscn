@@ -24,7 +24,7 @@ script = ExtResource("1_pm342")
 [node name="player_hand" parent="player_rendering" node_paths=PackedStringArray("hand_controller") instance=ExtResource("2_xfkjx")]
 editor_description = "PlayerHand
 "
-position = Vector2(1150, 648)
+position = Vector2(937, 496)
 script = ExtResource("3_e0m2r")
 hand_controller = NodePath("../../controllers/local_player_hand_controller")
 card_template = ExtResource("4_yecjy")
