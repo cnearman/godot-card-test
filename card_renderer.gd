@@ -19,5 +19,5 @@ func input_event(_viewport, event, _shape_idx):
 
 func initialize(card: Card):
 	self.name = card.name
-	$name.text = card.name
-	$cost.text = str(card.cost)
+	$MarginContainer/VBoxContainer/MarginContainer/name.text = card.name
+	$MarginContainer/VBoxContainer/MarginContainer2/cost.text = str(card.cost)

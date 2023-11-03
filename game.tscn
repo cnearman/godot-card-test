@@ -1,10 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://dq8nd7qfq30ai"]
+[gd_scene load_steps=9 format=3 uid="uid://dq8nd7qfq30ai"]
 
 [ext_resource type="Script" path="res://local_player_hand_controller.gd" id="1_pm342"]
+[ext_resource type="Script" path="res://local_player_board_controller.gd" id="2_ud5x2"]
 [ext_resource type="PackedScene" uid="uid://bbvshl8m5tu4c" path="res://player/player_hand.tscn" id="2_xfkjx"]
 [ext_resource type="Script" path="res://player/player_hand.gd" id="3_e0m2r"]
 [ext_resource type="PackedScene" uid="uid://benatmtaibooh" path="res://card.tscn" id="4_yecjy"]
 [ext_resource type="Script" path="res://add_card.gd" id="5_ecf1h"]
+[ext_resource type="Texture2D" uid="uid://cjg3cfjy3rc5h" path="res://board_slot.png" id="7_mcitu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0lm0a"]
 size = Vector2(275, 275)
@@ -18,17 +20,20 @@ unique_name_in_owner = true
 script = ExtResource("1_pm342")
 
 [node name="local_player_board_controller" type="Node" parent="controllers"]
+script = ExtResource("2_ud5x2")
 
 [node name="player_rendering" type="Node" parent="."]
 
 [node name="player_hand" parent="player_rendering" node_paths=PackedStringArray("hand_controller") instance=ExtResource("2_xfkjx")]
 editor_description = "PlayerHand
 "
-position = Vector2(937, 496)
+position = Vector2(1102, 357)
 script = ExtResource("3_e0m2r")
 hand_controller = NodePath("../../controllers/local_player_hand_controller")
 card_template = ExtResource("4_yecjy")
 card_offset = 500.0
+
+[node name="board" type="Node2D" parent="."]
 
 [node name="add_card" type="Node2D" parent="."]
 script = ExtResource("5_ecf1h")
@@ -39,6 +44,51 @@ script = ExtResource("5_ecf1h")
 position = Vector2(209, 447)
 shape = SubResource("RectangleShape2D_0lm0a")
 debug_color = Color(0, 0.6, 0.701961, 0.419608)
+
+[node name="BoardSlot1" type="Sprite2D" parent="."]
+position = Vector2(1135, 605.5)
+scale = Vector2(0.405264, 0.458)
+texture = ExtResource("7_mcitu")
+
+[node name="BoardSlot2" type="Sprite2D" parent="."]
+position = Vector2(1297, 606)
+scale = Vector2(0.405264, 0.458)
+texture = ExtResource("7_mcitu")
+
+[node name="BoardSlot3" type="Sprite2D" parent="."]
+position = Vector2(1460, 606)
+scale = Vector2(0.405264, 0.458)
+texture = ExtResource("7_mcitu")
+
+[node name="BoardSlot4" type="Sprite2D" parent="."]
+position = Vector2(1135, 845.5)
+scale = Vector2(0.405264, 0.458)
+texture = ExtResource("7_mcitu")
+
+[node name="BoardSlot5" type="Sprite2D" parent="."]
+position = Vector2(1297, 846)
+scale = Vector2(0.405264, 0.458)
+texture = ExtResource("7_mcitu")
+
+[node name="BoardSlot6" type="Sprite2D" parent="."]
+position = Vector2(1460, 846)
+scale = Vector2(0.405264, 0.458)
+texture = ExtResource("7_mcitu")
+
+[node name="BoardSlot7" type="Sprite2D" parent="."]
+position = Vector2(1135, 1085.5)
+scale = Vector2(0.405264, 0.458)
+texture = ExtResource("7_mcitu")
+
+[node name="BoardSlot8" type="Sprite2D" parent="."]
+position = Vector2(1297, 1086)
+scale = Vector2(0.405264, 0.458)
+texture = ExtResource("7_mcitu")
+
+[node name="BoardSlot9" type="Sprite2D" parent="."]
+position = Vector2(1460, 1086)
+scale = Vector2(0.405264, 0.458)
+texture = ExtResource("7_mcitu")
 
 [connection signal="hand_cards_updated" from="controllers/local_player_hand_controller" to="player_rendering/player_hand" method="render_hand"]
 [connection signal="input_event" from="add_card/Area2D" to="add_card" method="input_event"]
