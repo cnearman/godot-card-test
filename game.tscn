@@ -1,11 +1,14 @@
-[gd_scene load_steps=9 format=3 uid="uid://dq8nd7qfq30ai"]
+[gd_scene load_steps=12 format=3 uid="uid://dq8nd7qfq30ai"]
 
 [ext_resource type="Script" path="res://local_player_hand_controller.gd" id="1_pm342"]
 [ext_resource type="Script" path="res://local_player_board_controller.gd" id="2_ud5x2"]
 [ext_resource type="PackedScene" uid="uid://bbvshl8m5tu4c" path="res://player/player_hand.tscn" id="2_xfkjx"]
 [ext_resource type="Script" path="res://player/player_hand.gd" id="3_e0m2r"]
+[ext_resource type="Script" path="res://state_machine/core/gameplay_state_machine.gd" id="3_ykrc7"]
+[ext_resource type="Script" path="res://state_machine/core/gameplay_state.gd" id="4_i5jky"]
 [ext_resource type="PackedScene" uid="uid://benatmtaibooh" path="res://card.tscn" id="4_yecjy"]
 [ext_resource type="Script" path="res://add_card.gd" id="5_ecf1h"]
+[ext_resource type="Script" path="res://gameplay_state_initialize_game.gd" id="5_f4lvs"]
 [ext_resource type="Texture2D" uid="uid://cjg3cfjy3rc5h" path="res://board_slot.png" id="7_mcitu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0lm0a"]
@@ -21,6 +24,16 @@ script = ExtResource("1_pm342")
 
 [node name="local_player_board_controller" type="Node" parent="controllers"]
 script = ExtResource("2_ud5x2")
+
+[node name="local_gameplay_state_machine" type="Node" parent="controllers" node_paths=PackedStringArray("initial_state")]
+script = ExtResource("3_ykrc7")
+initial_state = NodePath("pregame_state")
+
+[node name="pregame_state" type="Node" parent="controllers/local_gameplay_state_machine"]
+script = ExtResource("4_i5jky")
+
+[node name="initialize_game_state" type="Node" parent="controllers/local_gameplay_state_machine"]
+script = ExtResource("5_f4lvs")
 
 [node name="player_rendering" type="Node" parent="."]
 
